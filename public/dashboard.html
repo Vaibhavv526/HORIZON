@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Monitoring Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h1>Environmental Monitoring Dashboard</h1>
+                <div>
+                    <a href="login.html" style="background: transparent; border: 1px solid #3b82f6; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: #3b82f6; font-weight: 600; margin-right: 0.5rem;">Login</a>
+                    <a href="register.html" style="background: #3b82f6; border: 1px solid #3b82f6; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; font-weight: 600;">Register User</a>
+                </div>
+            </div>
+            <p class="subtitle">Real-time tracking of environmental data</p>
+        </header>
+
+        <main class="dashboard">
+            <section class="form-section">
+                <div class="card">
+                    <h2>Submit Data</h2>
+                    <form id="dataForm">
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="e.g., Downtown Park" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pollutantType">Pollutant Type</label>
+                            <select id="pollutantType" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Air Quality (AQI)">Air Quality (AQI)</option>
+                                <option value="Water Quality (pH)">Water Quality (pH)</option>
+                                <option value="Noise Level (dB)">Noise Level (dB)</option>
+                                <option value="PM 2.5">PM 2.5</option>
+                                <option value="CO2 Level">CO2 Level</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="value">Value</label>
+                            <input type="number" step="0.01" id="value" placeholder="e.g., 45.5" required>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Submit Data</button>
+                        <div id="formMessage" class="message"></div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h2>Interactive Map (OpenStreetMap)</h2>
+                    <div id="map" style="height: 300px; border-radius: 8px; z-index: 1;"></div>
+                </div>
+
+                <div class="card">
+                    <h2>Recent Monitoring Data</h2>
+                    <div class="table-container">
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Pollutant Type</th>
+                                    <th>Value</th>
+                                    <th>Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Data rows will be injected here via JavaScript -->
+                                <tr>
+                                    <td colspan="4" class="loading">Loading data...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html>
